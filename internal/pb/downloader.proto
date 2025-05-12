@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package downloader;
+
+option go_package = "Go_Yt_Downloader_bot/internal/pb";
+
+service Downloader {
+  // Методы для загрузки медиа
+  rpc DownloadVideo(DownloadRequest) returns (DownloadResponse);
+  rpc DownloadAudio(DownloadRequest) returns (DownloadResponse);
+}
+
+// Запрос на загрузку медиа
+message DownloadRequest {
+  string url = 1;            // URL для загрузки
+  string quality = 2;        // Качество видео (например, "720p", "1080p")
+  string chat_id = 3;        // ID чата пользователя
+  string message_id = 4;     // ID сообщения для обновления статуса
+  string user_id = 5;        // ID пользователя
+}
+
+// Ответ на запрос загрузки
+message DownloadResponse {
+  string file_path = 1;      // Путь к загруженному файлу
+  string error = 2;          // Сообщение об ошибке, если есть
+  int64 file_size = 3;       // Размер файла в байтах
+}

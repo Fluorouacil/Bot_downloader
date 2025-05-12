@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: Bot_downloader
+      POSTGRES_PASSWORD: 1793
+      POSTGRES_DB: Bot_downloader
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  bot:
+    build:
+      context: .
+      dockerfile: cmd/bot/DOCKERFILE
+    container_name: bot_service
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://Bot_downloader:1793@db/Bot_downloader
+    volumes:
+      - downloads:/app/downloads
+    ports:
+      - "8000:8000"
+    depends_on:
+      - downloader
+      - db
+    networks:
+      - app_network
+
+  downloader:
+    build:
+      context: .
+      dockerfile: cmd/downloader/DOCKERFILE
+    container_name: downloader_service
+    env_file: .env
+    volumes:
+      - downloads:/app/downloads
+    ports:
+      - "50051:50051"
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+volumes:
+  downloads:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
+    

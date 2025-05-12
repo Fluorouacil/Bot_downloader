@@ -1,0 +1,24 @@
+FROM python:3.12.5-slim as builder
+WORKDIR /app
+
+# Установка ffmpeg (если нужен) и подготовка среды
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends ffmpeg && \
+    rm -rf /var/lib/apt/lists/*
+
+# Создание виртуального окружения и установка yt-dlp
+RUN python -m venv /opt/venv && \
+    /opt/venv/bin/pip install --no-cache-dir yt-dlp
+
+# Добавляем путь к yt-dlp в PATH
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Копируем зависимости и устанавливаем Python-пакеты
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем исходники
+COPY . .
+
+EXPOSE 8000
+CMD ["python", "main.py"]

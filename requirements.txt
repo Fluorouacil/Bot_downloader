@@ -1,0 +1,8 @@
+aiogram
+telethon
+python-dotenv
+sqlalchemy
+asyncpg
+grpcio
+grpcio-tools
+aiocryptopay
