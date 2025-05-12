@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, BigInteger, func, UniqueConstraint, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, DateTime, BigInteger, func, UniqueConstraint
 from sqlalchemy.ext.declarative import declarative_base
 # Создаем базу для ORM
 Base = declarative_base()

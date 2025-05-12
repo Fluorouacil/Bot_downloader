@@ -1,7 +1,5 @@
-from aiogram import Router, F
-from aiogram.types import InlineKeyboardButton, Message, CallbackQuery
-from aiogram.fsm.context import FSMContext
-from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram import Router
+from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 from internal.database.db import get_db_session
 from internal.database.models import User

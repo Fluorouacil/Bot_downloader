@@ -9,12 +9,9 @@ load_dotenv()
 
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 DATABASE_URL = os.getenv("DATABASE_URL")
-CRYPTO_BOT_TOKEN = os.getenv("CRYPTO_BOT_TOKEN")
 DATABASE = bool(os.getenv("DATABASE"))
 
 admins = list(map(int, os.getenv("ADMINS", "").split(",")))
-
-crypto_bot = AioCryptoPay(token= CRYPTO_BOT_TOKEN, network=Networks.MAIN_NET)
 
 GRPC_DOWNLOADER_ADDRESS = os.getenv("DOWNLOADER_SERVICE")
 

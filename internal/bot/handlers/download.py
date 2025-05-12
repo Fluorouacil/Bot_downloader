@@ -1,7 +1,6 @@
 import re
 import asyncio
 import grpc
-import logging
 from aiogram import Router, F, Bot
 from aiogram.types import InlineKeyboardButton, Message, CallbackQuery, ReactionTypeEmoji, FSInputFile
 from aiogram.fsm.context import FSMContext

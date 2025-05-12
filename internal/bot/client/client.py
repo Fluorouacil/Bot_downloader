@@ -1,10 +1,7 @@
 import os
-import asyncio
-import shutil
 from telethon import TelegramClient
 from internal.utils.utils import check_path, delete_file
 
-# Получите ваши данные API: API_ID, API_HASH и имя бота (username бота с символом @)
 API_ID = int(os.getenv("API_ID"))
 API_HASH = os.getenv("API_HASH")
 PHONE = os.getenv("PHONE_NUMBER")  # Ваш номер телефона в формате +79810815128
